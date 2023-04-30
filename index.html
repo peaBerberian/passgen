@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Password generator</title>
+    <link rel="icon" type="image/x-icon" href="favicon.svg" />
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <style>
+      #copy-btn:hover {
+        fill: #88aaee;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body
+    style="font-family: mono, monospace; text-align: center; line-height: 2em"
+  >
+    <div
+      style="
+        width: fit-content;
+        margin: auto;
+        text-align: left;
+        background-color: #f1f1ff;
+        padding: 20px;
+        max-width: 90%;
+      "
+    >
+      <h1
+        style="
+          font-size: 1.2em;
+          text-align: center;
+          margin: 0px 0px 10px 0px;
+          padding: 0px;
+        "
+      >
+        Password Generator
+      </h1>
+      <div
+        style="
+          margin-bottom: 10px;
+          background-color: #fff;
+          padding: 5px;
+          border: 1px dotted black;
+          text-align: center;
+          height: 2em;
+        "
+      >
+        <span id="output" style="color: #000; font-weight: bold"></span>
+        <svg
+          id="copy-btn"
+          style="display: none; float: right"
+          width="22px"
+          height="22px"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+        >
+          <path
+            d="M10 8V7C10 6.05719 10 5.58579 10.2929 5.29289C10.5858 5 11.0572 5 12 5H17C17.9428 5 18.4142 5 18.7071 5.29289C19 5.58579 19 6.05719 19 7V12C19 12.9428 19 13.4142 18.7071 13.7071C18.4142 14 17.9428 14 17 14H16M7 19H12C12.9428 19 13.4142 19 13.7071 18.7071C14 18.4142 14 17.9428 14 17V12C14 11.0572 14 10.5858 13.7071 10.2929C13.4142 10 12.9428 10 12 10H7C6.05719 10 5.58579 10 5.29289 10.2929C5 10.5858 5 11.0572 5 12V17C5 17.9428 5 18.4142 5.29289 18.7071C5.58579 19 6.05719 19 7 19Z"
+            stroke="#000"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </div>
+      <div>
+        <div style="text-align: center; margin-bottom: 5px">
+          <button id="generate-btn">Generate</button>
+        </div>
+        <div>
+          <input
+            checked
+            name="lower-case-btn"
+            type="checkbox"
+            id="lower-case-btn"
+          />
+          <label for="lower-case-btn">Lower case characters</label>
+        </div>
+        <div>
+          <input
+            checked
+            name="upper-case-btn"
+            type="checkbox"
+            id="upper-case-btn"
+          />
+          <label for="upper-case-btn">Upper case characters</label>
+        </div>
+        <div>
+          <input checked name="nums-btn" type="checkbox" id="nums-btn" />
+          <label for="nums-btn">Numbers</label>
+        </div>
+        <div>
+          <input checked name="symbols-btn" type="checkbox" id="symbols-btn" />
+          <label for="symbols-btn">Symbols</label>
+        </div>
+        <div>
+          <label for="length-input">Length: </label>
+          <input
+            name="length-input"
+            type="number"
+            id="length-input"
+            value="14"
+          />
+        </div>
+      </div>
+    </div>
+    <script src="./passgen.js"></script>
+  </body>
+</html>
