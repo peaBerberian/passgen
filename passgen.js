@@ -32,7 +32,15 @@ const symbolsCheckButton = document.getElementById("symbols-btn");
 const lengthInput = document.getElementById("length-input");
 const output = document.getElementById("output");
 
+lowerCaseCheckButton.onchange = generate;
+upperCaseCheckButton.onchange = generate;
+numberCheckButton.onchange = generate;
+symbolsCheckButton.onchange = generate;
+lengthInput.onchange = generate;
+
 document.getElementById("generate-btn").onclick = generate;
+
+generate();
 
 function generate() {
   copyBtn.style.display = "none";
@@ -44,14 +52,23 @@ function generate() {
   const shouldHaveNums = numberCheckButton.checked;
   const shouldHaveSymbols = symbolsCheckButton.checked;
   let len = +lengthInput.value;
+  const minLen =
+    +shouldHaveLowerCase +
+    shouldHaveUpperCase +
+    shouldHaveNums +
+    shouldHaveSymbols;
   try {
+    if (minLen === 0) {
+      throw new Error("No allowed character.");
+    }
     if (isNaN(len) || len === 0) {
-      output.textContent = "Error: Invalid length value.";
-      return;
+      throw new Error("Invalid length value.");
+    }
+    if (len < minLen) {
+      throw new Error("Password length too short.");
     }
     if (len > 1000) {
-      output.textContent = "Error: Length too high";
-      return;
+      throw new Error("Password length too high");
     }
 
     const pw = generatePassword();
@@ -60,7 +77,7 @@ function generate() {
       copyBtn.style.display = "inline";
     }
   } catch (err) {
-    output.textContent = "Error while calculating password: " + err.message;
+    output.textContent = "Error: " + err.message;
   }
 
   /**
@@ -68,14 +85,6 @@ function generate() {
    * @returns {string}
    */
   function generatePassword() {
-    const minLen =
-      +shouldHaveLowerCase +
-      shouldHaveUpperCase +
-      shouldHaveNums +
-      shouldHaveSymbols;
-    if (len < minLen) {
-      throw new Error("Password length too short.");
-    }
     const lowerLastNb = shouldHaveLowerCase
       ? LOWER_CASE_LETTERS.length * LOWER_FACTOR
       : 0;
