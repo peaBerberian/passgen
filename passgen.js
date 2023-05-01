@@ -39,13 +39,19 @@ symbolsCheckButton.onchange = generate;
 lengthInput.onchange = generate;
 
 document.getElementById("generate-btn").onclick = generate;
+document.getElementById("generate-hidden-btn").onclick = generateHidden;
 
 generate();
 
-function generate() {
+function generateHidden() {
+  return generate(true);
+}
+
+function generate(hidden) {
   copyBtn.style.display = "none";
   copyBtn.style.fill = null;
   output.textContent = "";
+  output.style.backgroundColor = "transparent";
 
   const shouldHaveLowerCase = lowerCaseCheckButton.checked;
   const shouldHaveUpperCase = upperCaseCheckButton.checked;
@@ -72,6 +78,9 @@ function generate() {
     }
 
     const pw = generatePassword();
+    if (hidden === true) {
+      output.style.backgroundColor = "#000";
+    }
     output.textContent = pw;
     if (navigator.clipboard != null) {
       copyBtn.style.display = "inline";
